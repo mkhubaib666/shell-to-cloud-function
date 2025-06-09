@@ -1,0 +1,18 @@
+# Example configuration for the Shell to Cloud Function Converter.
+# Rename this file to config.yaml to use it.
+
+# Default settings (can be overridden by CLI flags)
+defaults:
+  language: python
+  provider: aws
+  # The directory where custom, non-core plugins are located.
+  plugins_dir: null # e.g., "/path/to/my/plugins"
+
+# Security scanner configuration
+security:
+  # Fail immediately if a command with this level is found.
+  # Levels: CRITICAL, HIGH, MEDIUM, LOW
+  fail_on_level: CRITICAL
+
+  # Set to 'false' to disable the interactive confirmation prompt.
+  interactive_prompt: true

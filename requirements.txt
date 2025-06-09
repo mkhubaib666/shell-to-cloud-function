@@ -1,0 +1,5 @@
+bashlex
+pytest
+pyyaml
+black
+flake8
