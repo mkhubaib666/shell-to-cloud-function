@@ -37,8 +37,6 @@ class CommandHandler:
     def _resolve_vars(self, text, lang="python"):
         """Resolves shell variables like $VAR or ${VAR}."""
         if lang == "python":
-            return re.sub(
-                r"\$(\w+)|\${(\w+)}", r"os.environ.get('\1\2', '')", text
-            )
+            return re.sub(r"\$(\w+)|\${(\w+)}", r"os.environ.get('\1\2', '')", text)
         # Add nodejs logic here if needed
         return text

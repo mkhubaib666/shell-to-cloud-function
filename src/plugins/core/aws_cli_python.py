@@ -24,16 +24,10 @@ class AwsS3CpHandler(CommandHandler):
 
         if source.startswith("s3://"):  # Download
             bucket, key = self._parse_s3_uri(source)
-            return (
-                f"{code}\n"
-                f"s3_client.download_file('{bucket}', '{key}', '{dest}')"
-            )
+            return f"{code}\n" f"s3_client.download_file('{bucket}', '{key}', '{dest}')"
         elif dest.startswith("s3://"):  # Upload
             bucket, key = self._parse_s3_uri(dest)
-            return (
-                f"{code}\n"
-                f"s3_client.upload_file('{source}', '{bucket}', '{key}')"
-            )
+            return f"{code}\n" f"s3_client.upload_file('{source}', '{bucket}', '{key}')"
         else:
             return "# 'aws s3 cp' requires one S3 URI. Falling back."
 

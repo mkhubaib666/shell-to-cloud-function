@@ -4,7 +4,7 @@ class ConversionContext:
     def __init__(self):
         self.imports = set()
         self.code_lines = []
-        self.variables = {}  
+        self.variables = {}
 
     def add_import(self, import_statement):
         self.imports.add(import_statement)

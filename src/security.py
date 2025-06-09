@@ -42,9 +42,7 @@ class SecurityAnalyzer:
                     rule = DANGEROUS_COMMANDS[cmd_name]
                     parts_str = " ".join(p.word for p in node.parts)
                     # Check if any of the rule's flags are present
-                    if not rule["flags"] or any(
-                        f in parts_str for f in rule["flags"]
-                    ):
+                    if not rule["flags"] or any(f in parts_str for f in rule["flags"]):
                         warnings.append(
                             f"[{rule['level']}] Found command '{cmd_name}': {rule['warning']}"
                         )

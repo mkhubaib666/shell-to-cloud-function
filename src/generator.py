@@ -31,15 +31,15 @@ class ProjectGenerator:
 
     def _generate_function_file(self, imports, code_body):
         lang_path = os.path.join(self.template_path, self.language)
-        template_file = f"{self.provider}_function.{'py' if self.language == 'python' else 'js'}"
+        template_file = (
+            f"{self.provider}_function.{'py' if self.language == 'python' else 'js'}"
+        )
 
         with open(os.path.join(lang_path, template_file), "r") as f:
             template = f.read()
 
         indent = "    " if self.language == "python" else "  "
-        indented_body = "\n".join(
-            [f"{indent}{line}" for line in code_body.split("\n")]
-        )
+        indented_body = "\n".join([f"{indent}{line}" for line in code_body.split("\n")])
 
         full_code = template.replace("#IMPORTS#", "\n".join(imports)).replace(
             "#CODE_BODY#", indented_body
@@ -51,20 +51,14 @@ class ProjectGenerator:
 
     def _generate_dependencies_file(self):
         if self.language == "python":
-            deps_path = os.path.join(
-                self.template_path, "python", "requirements.txt"
-            )
+            deps_path = os.path.join(self.template_path, "python", "requirements.txt")
             shutil.copy(deps_path, self.output_path)
         elif self.language == "nodejs":
-            deps_path = os.path.join(
-                self.template_path, "nodejs", "package.json"
-            )
+            deps_path = os.path.join(self.template_path, "nodejs", "package.json")
             shutil.copy(deps_path, self.output_path)
 
     def _generate_gitignore(self):
-        gitignore_path = os.path.join(
-            self.template_path, "common", ".gitignore"
-        )
+        gitignore_path = os.path.join(self.template_path, "common", ".gitignore")
         shutil.copy(gitignore_path, self.output_path)
 
     def _generate_provider_specific_files(self):
@@ -91,7 +85,5 @@ class ProjectGenerator:
                 if self.language == "python"
                 else "test_handler.test.js"
             )
-            dest_path = os.path.join(
-                self.output_path, "tests", dest_filename
-            )
+            dest_path = os.path.join(self.output_path, "tests", dest_filename)
             shutil.copy(test_template_path, dest_path)

@@ -21,9 +21,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Convert shell scripts to serverless projects."
     )
-    parser.add_argument(
-        "shell_script", help="Path to the shell script to convert."
-    )
+    parser.add_argument("shell_script", help="Path to the shell script to convert.")
     parser.add_argument(
         "--output-dir",
         required=True,
